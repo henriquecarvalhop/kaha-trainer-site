@@ -1,11 +1,12 @@
-# Raiz de cada documento cai no inglês (o JS do index redireciona por idioma antes).
+# Netlify. Raiz de cada documento cai no inglês; o JS do index redireciona por idioma antes.
 /privacy        /privacy/en        302
 /terms          /terms/en          302
 /user-privacy   /user-privacy/en   302
 /support        /support/en        302
 
-# Caixa baixa para pt-BR — quem digita à mão não usa maiúscula.
-/privacy/pt-br        /privacy/pt-BR        301
-/terms/pt-br          /terms/pt-BR          301
-/user-privacy/pt-br   /user-privacy/pt-BR   301
-/support/pt-br        /support/pt-BR        301
+# pt-BR com maiúscula: o caminho canônico é minúsculo, mas quem copiou a URL
+# com caixa mista tem que chegar na página mesmo assim.
+/privacy/pt-BR        /privacy/pt-br        301
+/terms/pt-BR          /terms/pt-br          301
+/user-privacy/pt-BR   /user-privacy/pt-br   301
+/support/pt-BR        /support/pt-br        301

@@ -10,16 +10,25 @@ para o ar.
 index.html                 one-pager em inglês
 assets/css/style.css       folha única, usada por todas as páginas
 assets/img/                ícone do app e screenshots
-privacy/{en,es,pt-BR}/     Política de Privacidade
-terms/{en,es,pt-BR}/       Termos de Serviço
-user-privacy/{en,es,pt-BR}/ Suas escolhas de privacidade (exigida pelo App Store Connect)
-support/{en,es,pt-BR}/     Página de suporte
-_redirects                 regras de redirecionamento (Netlify)
+privacy/{en,es,pt-br}/     Política de Privacidade
+terms/{en,es,pt-br}/       Termos de Serviço
+user-privacy/{en,es,pt-br}/ Suas escolhas de privacidade (exigida pelo App Store Connect)
+support/{en,es,pt-br}/     Página de suporte
+_redirects                 redirecionamentos (Netlify)
+vercel.json                os mesmos redirecionamentos (Vercel)
 ```
 
 Cada documento tem também um `index.html` na raiz (`/privacy`) que manda para o
-idioma do navegador, e uma pasta `pt-br` minúscula que redireciona para `pt-BR` —
-hosts estáticos diferenciam maiúsculas e ninguém digita `pt-BR` à mão.
+idioma do navegador.
+
+### ⚠️ `pt-br` é minúsculo, e isso não é estilo
+
+O disco do Mac **não diferencia maiúsculas**: criar `privacy/pt-br` ao lado de
+`privacy/pt-BR` não cria duas pastas, sobrescreve a que existia. Um host estático,
+por outro lado, diferencia — `/privacy/pt-BR` daria 404 se a pasta no disco for
+minúscula. Por isso há uma grafia só, a minúscula, e a variante com maiúscula
+existe apenas como redirecionamento em `_redirects` e `vercel.json`.
+`LegalLinks.swift`, no app, monta a URL com `pt-br`. Não recriar a pasta maiúscula.
 
 ## URLs que o App Store Connect espera
 
@@ -27,7 +36,7 @@ hosts estáticos diferenciam maiúsculas e ninguém digita `pt-BR` à mão.
 |---|---|
 | Política de privacidade (Inglês EUA) | `https://kahatrainer.com/privacy/en` |
 | Política de privacidade (Espanhol) | `https://kahatrainer.com/privacy/es` |
-| Política de privacidade (Português BR) | `https://kahatrainer.com/privacy/pt-BR` |
+| Política de privacidade (Português BR) | `https://kahatrainer.com/privacy/pt-br` |
 | Opções de privacidade do usuário | `https://kahatrainer.com/user-privacy/en` (`/es`, `/pt-BR`) |
 | URL de suporte | `https://kahatrainer.com/support/en` (`/es`, `/pt-BR`) |
 | URL de marketing | `https://kahatrainer.com/` |
@@ -35,27 +44,16 @@ hosts estáticos diferenciam maiúsculas e ninguém digita `pt-BR` à mão.
 O app abre as mesmas páginas por `LegalLinks.swift`, que monta
 `base/documento/idioma`.
 
-## ⚠️ Pendências antes de publicar
+## Pendências antes de publicar
 
-1. **`[LEGAL ENTITY]` / `[ENTIDADE LEGAL]` / `[ENTIDAD LEGAL]`** — pessoa física ou
-   jurídica que responde pelo app. Aparece na Política de Privacidade e nos Termos,
-   nos três idiomas.
-2. **`[JURISDICTION]` / `[JURISDIÇÃO]` / `[JURISDICCIÓN]`** — lei aplicável e foro.
-   Só nos Termos.
-3. **Botão de download** — hoje é "Coming soon" apontando para o e-mail. Quando o app
+1. **Botão de download** — hoje é "Coming soon" apontando para o e-mail. Quando o app
    sair, trocar por `https://apps.apple.com/app/idXXXXXXXXX` no header, no hero e no
    CTA final do `index.html` (três lugares).
-4. **Screenshots** — `assets/img/` tem só a tela de boas-vindas. Faltam as telas de
+2. **Screenshots** — `assets/img/` tem só a tela de boas-vindas. Faltam as telas de
    treino, ficha, progresso e competição.
 
-Para achar todas as pendências de uma vez:
-
-```bash
-grep -rn "\[LEGAL ENTITY\]\|\[ENTIDADE LEGAL\]\|\[ENTIDAD LEGAL\]\|\[JURISDICTION\]\|\[JURISDIÇÃO\]\|\[JURISDICCIÓN\]" .
-```
-
-As caixas laranja no topo dos documentos marcam essas lacunas na própria página —
-elas somem quando os campos forem preenchidos (apague o `<div class="todo">`).
+Já preenchido: a entidade (**CloudArbitration LTDA**) e o foro (**Brasil**) nos seis
+documentos de privacidade e termos, nos três idiomas.
 
 ## Rodar localmente
 

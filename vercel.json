@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/privacy",           "destination": "/privacy/en" },
+    { "source": "/terms",             "destination": "/terms/en" },
+    { "source": "/user-privacy",      "destination": "/user-privacy/en" },
+    { "source": "/support",           "destination": "/support/en" },
+    { "source": "/privacy/pt-BR",      "destination": "/privacy/pt-br",      "permanent": true },
+    { "source": "/terms/pt-BR",        "destination": "/terms/pt-br",        "permanent": true },
+    { "source": "/user-privacy/pt-BR", "destination": "/user-privacy/pt-br", "permanent": true },
+    { "source": "/support/pt-BR",      "destination": "/support/pt-br",      "permanent": true }
+  ]
+}
