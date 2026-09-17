@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting…</title>
+<link rel="canonical" href="/terms/en">
+<meta http-equiv="refresh" content="0; url=/terms/en">
+<script>
+  // Manda para a versão do idioma do navegador quando ela existe.
+  (function () {
+    var l = (navigator.language || "en").toLowerCase();
+    var t = l.indexOf("pt") === 0 ? "pt-BR" : l.indexOf("es") === 0 ? "es" : "en";
+    location.replace("/terms/" + t);
+  })();
+</script>
+</head>
+<body><p>Redirecting to <a href="/terms/en">/terms/en</a>…</p></body>
+</html>
