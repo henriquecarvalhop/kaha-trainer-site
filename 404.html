@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Kaha Trainer</title>
+<link rel="icon" href="/assets/img/icon-1024.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<script>
+  // O GitHub Pages não tem regra de redirecionamento no servidor. Esta página
+  // recupera os dois casos previsíveis antes de admitir que a URL não existe:
+  // caixa errada no idioma (/privacy/pt-BR) e documento sem idioma (/privacy).
+  (function () {
+    var p = location.pathname.replace(/\/+$/, "");
+    var m = p.match(/^\/(privacy|terms|user-privacy|support)(?:\/([A-Za-z-]+))?$/);
+    if (!m) return;
+    var doc = m[1], lang = (m[2] || "").toLowerCase();
+    var known = { "en": "en", "es": "es", "pt-br": "pt-br", "pt": "pt-br" };
+    if (!lang) {
+      var nav = (navigator.language || "en").toLowerCase();
+      lang = nav.indexOf("pt") === 0 ? "pt-br" : nav.indexOf("es") === 0 ? "es" : "en";
+    }
+    var target = known[lang];
+    if (target) location.replace("/" + doc + "/" + target);
+  })();
+</script>
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/img/icon-1024.png" alt="">Kaha Trainer</a>
+  </div>
+</header>
+<main class="legal">
+  <div class="wrap">
+    <h1>Page not found</h1>
+    <p>That address doesn't exist. These do:</p>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/privacy/en">Privacy Policy</a> · <a href="/privacy/pt-br">Português</a> · <a href="/privacy/es">Español</a></li>
+      <li><a href="/terms/en">Terms of Service</a> · <a href="/terms/pt-br">Português</a> · <a href="/terms/es">Español</a></li>
+      <li><a href="/user-privacy/en">Your Privacy Choices</a></li>
+      <li><a href="/support/en">Support</a></li>
+    </ul>
+  </div>
+</main>
+</body>
+</html>
