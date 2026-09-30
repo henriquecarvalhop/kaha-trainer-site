@@ -3,32 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found — Kaha Trainer</title>
+<title>Page not found — Kaha</title>
+<meta name="description" content="Page not found.">
 <link rel="icon" href="/assets/img/icon-1024.png">
+<link rel="apple-touch-icon" href="/assets/img/icon-1024.png">
 <link rel="stylesheet" href="/assets/css/style.css">
+<script src="/assets/js/site.js" defer></script>
 <script>
   // O GitHub Pages não tem regra de redirecionamento no servidor. Esta página
   // recupera os dois casos previsíveis antes de admitir que a URL não existe:
-  // caixa errada no idioma (/privacy/pt-BR) e documento sem idioma (/privacy).
+  // caixa errada no idioma (/privacy/pt-BR) e documento sem idioma (/privacy),
+  // dos dois apps (/dietcoach/privacy/pt-BR).
   (function () {
     var p = location.pathname.replace(/\/+$/, "");
-    var m = p.match(/^\/(privacy|terms|user-privacy|support)(?:\/([A-Za-z-]+))?$/);
+    var m = p.match(/^(\/dietcoach)?\/(privacy|terms|user-privacy|support)(?:\/([A-Za-z-]+))?$/);
     if (!m) return;
-    var doc = m[1], lang = (m[2] || "").toLowerCase();
+    var app = m[1] || "", doc = m[2], lang = (m[3] || "").toLowerCase();
+    if (app && doc === "terms") return;
     var known = { "en": "en", "es": "es", "pt-br": "pt-br", "pt": "pt-br" };
     if (!lang) {
       var nav = (navigator.language || "en").toLowerCase();
       lang = nav.indexOf("pt") === 0 ? "pt-br" : nav.indexOf("es") === 0 ? "es" : "en";
     }
     var target = known[lang];
-    if (target) location.replace("/" + doc + "/" + target);
+    if (target) location.replace(app + "/" + doc + "/" + target);
   })();
 </script>
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    <a class="brand" href="/"><img src="/assets/img/icon-1024.png" alt="">Kaha Trainer</a>
+    <a class="brand" href="/"><span class="brand-mark">K</span><span class="brand-text">Kaha</span></a>
+    <nav class="app-menus" aria-label="Apps">
+      <details class="menu">
+        <summary><img src="/assets/img/icon-1024.png" alt="">Kaha Trainer</summary>
+        <div class="menu-panel">
+          <a class="primary" href="/trainer/">Overview</a>
+          <hr>
+          <a href="/support/en">Support</a>
+          <a href="/privacy/en">Privacy Policy</a>
+          <a href="/user-privacy/en">Your Privacy Choices</a>
+          <a href="/terms/en">Terms of Service</a>
+        </div>
+      </details>
+      <details class="menu">
+        <summary><img src="/assets/img/dietcoach-icon.png" alt="">DietCoach</summary>
+        <div class="menu-panel">
+          <a class="primary" href="/dietcoach/">Overview</a>
+          <hr>
+          <a href="/dietcoach/support/en">Support</a>
+          <a href="/dietcoach/privacy/en">Privacy Policy</a>
+          <a href="/dietcoach/user-privacy/en">Your Privacy Choices</a>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (Apple EULA)</a>
+        </div>
+      </details>
+    </nav>
   </div>
 </header>
 <main class="legal">
@@ -37,10 +66,8 @@
     <p>That address doesn't exist. These do:</p>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/privacy/en">Privacy Policy</a> · <a href="/privacy/pt-br">Português</a> · <a href="/privacy/es">Español</a></li>
-      <li><a href="/terms/en">Terms of Service</a> · <a href="/terms/pt-br">Português</a> · <a href="/terms/es">Español</a></li>
-      <li><a href="/user-privacy/en">Your Privacy Choices</a></li>
-      <li><a href="/support/en">Support</a></li>
+      <li><b>Kaha Trainer</b> — <a href="/trainer/">Overview</a> · <a href="/support/en">Support</a> · <a href="/privacy/en">Privacy Policy</a> · <a href="/terms/en">Terms of Service</a> · <a href="/user-privacy/en">Your Privacy Choices</a></li>
+      <li><b>DietCoach</b> — <a href="/dietcoach/">Overview</a> · <a href="/dietcoach/support/en">Support</a> · <a href="/dietcoach/privacy/en">Privacy Policy</a> · <a href="/dietcoach/user-privacy/en">Your Privacy Choices</a></li>
     </ul>
   </div>
 </main>

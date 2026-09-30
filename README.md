@@ -1,22 +1,39 @@
-# Kaha Trainer — site
+# Kaha — site dos apps
 
-Site estático da landing page + documentos legais do app Kaha Trainer (iOS).
-HTML e CSS puros, **sem build e sem dependência**: o que está na pasta é o que vai
-para o ar.
+Site estático da Kaha: uma home para os dois apps (Kaha Trainer e DietCoach), a
+landing de cada um e os documentos legais dos dois. HTML e CSS puros, **sem build
+e sem dependência**: o que está na pasta é o que vai para o ar.
 
 ## Estrutura
 
 ```
-index.html                 one-pager em inglês
-assets/css/style.css       folha única, usada por todas as páginas
-assets/img/                ícone do app e screenshots
-privacy/{en,es,pt-br}/     Política de Privacidade
-terms/{en,es,pt-br}/       Termos de Serviço
-user-privacy/{en,es,pt-br}/ Suas escolhas de privacidade (exigida pelo App Store Connect)
-support/{en,es,pt-br}/     Página de suporte
-_redirects                 redirecionamentos (Netlify)
-vercel.json                os mesmos redirecionamentos (Vercel)
+index.html                           home: os dois apps (em inglês)
+trainer/index.html                   landing do Kaha Trainer (em inglês)
+dietcoach/index.html                 landing do DietCoach (em inglês)
+assets/css/style.css                 folha única, usada por todas as páginas
+assets/js/site.js                    só fecha o menu de app aberto ao clicar fora
+assets/img/                          ícones e screenshots dos dois apps
+
+privacy/{en,es,pt-br}/               Kaha Trainer — Política de Privacidade
+terms/{en,es,pt-br}/                 Kaha Trainer — Termos de Serviço
+user-privacy/{en,es,pt-br}/          Kaha Trainer — Suas escolhas de privacidade
+support/{en,es,pt-br}/               Kaha Trainer — Suporte
+
+dietcoach/privacy/{en,es,pt-br}/     DietCoach — Política de Privacidade
+dietcoach/user-privacy/{en,es,pt-br}/ DietCoach — Suas escolhas de privacidade
+dietcoach/support/{en,es,pt-br}/     DietCoach — Suporte
+                                     (termos: o EULA padrão da Apple)
+
+_redirects                           redirecionamentos (Netlify)
+vercel.json                          os mesmos redirecionamentos (Vercel)
 ```
+
+Os documentos do Kaha Trainer ficam na raiz porque essas URLs já estão no app
+publicado e no App Store Connect — **não mover**. O DietCoach vive debaixo de
+`/dietcoach`.
+
+Toda página tem o mesmo cabeçalho: a marca leva à home e há um menu por app
+(`<details>`, funciona sem JS). Ao mudar um link do menu, mudar em todas as páginas.
 
 Cada documento tem também um `index.html` na raiz (`/privacy`) que manda para o
 idioma do navegador.
@@ -32,6 +49,8 @@ existe apenas como redirecionamento em `_redirects` e `vercel.json`.
 
 ## URLs que o App Store Connect espera
 
+### Kaha Trainer
+
 | campo | URL |
 |---|---|
 | Política de privacidade (Inglês EUA) | `https://kahatrainer.com/privacy/en` |
@@ -41,19 +60,36 @@ existe apenas como redirecionamento em `_redirects` e `vercel.json`.
 | URL de suporte | `https://kahatrainer.com/support/en` (`/es`, `/pt-BR`) |
 | URL de marketing | `https://kahatrainer.com/` |
 
-O app abre as mesmas páginas por `LegalLinks.swift`, que monta
+### DietCoach
+
+| campo | URL |
+|---|---|
+| Política de privacidade (Inglês EUA) | `https://kahatrainer.com/dietcoach/privacy/en` |
+| Política de privacidade (Espanhol) | `https://kahatrainer.com/dietcoach/privacy/es` |
+| Política de privacidade (Português BR) | `https://kahatrainer.com/dietcoach/privacy/pt-br` |
+| Opções de privacidade do usuário | `https://kahatrainer.com/dietcoach/user-privacy/en` (`/es`, `/pt-br`) |
+| URL de suporte | `https://kahatrainer.com/dietcoach/support/en` (`/es`, `/pt-br`) |
+| URL de marketing | `https://kahatrainer.com/dietcoach/` |
+
+Os dois apps abrem as mesmas páginas por `LegalLinks.swift`, que monta
 `base/documento/idioma`.
 
 ## Pendências antes de publicar
 
-1. **Botão de download** — hoje é "Coming soon" apontando para o e-mail. Quando o app
-   sair, trocar por `https://apps.apple.com/app/idXXXXXXXXX` no header, no hero e no
-   CTA final do `index.html` (três lugares).
-2. **Screenshots** — `assets/img/` tem só a tela de boas-vindas. Faltam as telas de
-   treino, ficha, progresso e competição.
+1. **HTTPS do domínio** — em 2026-09-24 `https://kahatrainer.com` respondia com o
+   certificado do GitHub (`*.github.io`), não com um do domínio: o navegador mostra
+   erro de segurança, e o revisor da Apple também. No repositório, *Settings → Pages*:
+   conferir o domínio personalizado e marcar **Enforce HTTPS** (o certificado do Let's
+   Encrypt sai em alguns minutos depois que o DNS está certo).
+2. **Botão de download** — hoje é "Coming soon" apontando para o e-mail. Quando cada
+   app sair, trocar por `https://apps.apple.com/app/idXXXXXXXXX` no hero e no CTA final
+   da landing dele (`trainer/index.html`, `dietcoach/index.html`) e no card da home.
+3. **Screenshots** — cada app tem só as telas de boas-vindas. Faltam as telas de uso
+   (Kaha Trainer: treino, ficha, progresso, competição; DietCoach: diário, prato,
+   estratégia, progresso).
 
-Já preenchido: a entidade (**CloudArbitration LTDA**) e o foro (**Brasil**) nos seis
-documentos de privacidade e termos, nos três idiomas.
+Já preenchido: a entidade (**CloudArbitration LTDA**) e o foro (**Brasil**) em todos
+os documentos, nos três idiomas.
 
 ## Rodar localmente
 

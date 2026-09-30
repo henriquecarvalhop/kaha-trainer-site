@@ -1,5 +1,6 @@
-/* Kaha Trainer — folha única, sem build.
-   Paleta tirada do app: verde do ícone e os três eixos de Milestones.swift. */
+/* Kaha — folha única, sem build, para o site dos dois apps (Kaha Trainer e
+   DietCoach). Paleta tirada do app: verde do ícone e os três eixos de
+   Milestones.swift; o vermelho é o do ícone do DietCoach. */
 
 :root {
   --green:        #22C55D;
@@ -7,6 +8,7 @@
   --green-deep:   #0B3D22;
   --blue:         #3B82F6;
   --orange:       #F97316;
+  --red:          #EF4444;
 
   --ink:          #0C1412;
   --ink-soft:     #3D4B46;
@@ -73,6 +75,84 @@ p  { margin: 0 0 1em; }
   color: var(--ink-soft); text-decoration: none; font-size: 0.95rem; font-weight: 520;
 }
 .site-nav a:hover { color: var(--ink); }
+
+/* Marca da casa: um quadrado verde com a inicial, sem ícone de app — a home
+   é dos dois. */
+.brand-mark {
+  width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center;
+  background: var(--green); color: #05230f; font-weight: 820; font-size: 1rem;
+}
+
+/* ---------- Menus dos apps ----------
+   `<details>` e não hover: abre com toque no iPhone e com teclado, sem JS.
+   O `site.js` só fecha o menu aberto quando se clica fora. */
+
+.app-menus { display: flex; gap: 6px; margin-left: auto; }
+.menu { position: relative; }
+.menu summary {
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border-radius: 999px;
+  font-size: 0.95rem; font-weight: 600; color: var(--ink-soft);
+}
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary::after {
+  content: ""; width: 6px; height: 6px; margin-left: 2px;
+  border-right: 2px solid currentColor; border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg); opacity: .6;
+}
+.menu[open] summary::after { transform: translateY(1px) rotate(-135deg); }
+.menu summary:hover, .menu[open] summary { background: var(--paper-warm); color: var(--ink); }
+.menu summary img { width: 22px; height: 22px; border-radius: 6px; }
+.menu-panel {
+  position: absolute; right: 0; top: calc(100% + 8px); min-width: 230px;
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(12,20,18,0.12); padding: 8px;
+  display: grid; gap: 2px;
+}
+.menu-panel a {
+  display: block; padding: 9px 12px; border-radius: 10px;
+  color: var(--ink); text-decoration: none; font-size: 0.95rem;
+}
+.menu-panel a:hover { background: var(--paper-warm); }
+.menu-panel a.primary { font-weight: 650; }
+.menu-panel hr { border: 0; border-top: 1px solid var(--line); margin: 4px 6px; }
+
+/* Seções da landing de um app, logo abaixo do cabeçalho. */
+.sub-nav { border-bottom: 1px solid var(--line); background: #fff; }
+.sub-nav .wrap {
+  display: flex; align-items: center; gap: 24px; height: 50px; overflow-x: auto;
+}
+.sub-nav .app-name {
+  display: flex; align-items: center; gap: 8px; font-weight: 700; white-space: nowrap;
+  color: var(--ink); text-decoration: none;
+}
+.sub-nav .app-name img { width: 24px; height: 24px; border-radius: 6px; }
+.sub-nav a { color: var(--ink-soft); text-decoration: none; font-size: 0.93rem; white-space: nowrap; }
+.sub-nav a:hover { color: var(--ink); }
+
+/* ---------- Home: os dois apps ---------- */
+
+.hub-hero { background: var(--ink); color: #E9F1EC; padding: 96px 0 72px; text-align: center; }
+.hub-hero h1 { color: #fff; }
+.hub-hero .lede { font-size: 1.22rem; color: #B7C7BF; max-width: 46ch; margin: 0 auto; }
+.products { margin-top: -40px; padding-top: 0; }
+.product {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  padding: 34px; display: flex; flex-direction: column; gap: 18px;
+  box-shadow: 0 18px 50px rgba(12,20,18,0.08);
+}
+.product-head { display: flex; align-items: center; gap: 16px; }
+.product-head img { width: 64px; height: 64px; border-radius: 15px; box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+.product-head h2 { font-size: 1.6rem; margin: 0; }
+.product-head .tag { color: var(--ink-faint); font-size: 0.95rem; margin: 0; }
+.product > p { color: var(--ink-soft); margin: 0; }
+.product ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.product li { padding-left: 26px; position: relative; color: var(--ink-soft); font-size: 0.98rem; }
+.product li::before { content: "✓"; position: absolute; left: 0; color: var(--green-dark); font-weight: 700; }
+.product .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
+.product .links { font-size: 0.9rem; color: var(--ink-faint); }
+.product .links a { color: var(--ink-faint); }
 
 /* ---------- Botões ---------- */
 
@@ -276,5 +356,18 @@ section.tight { padding: 64px 0; }
   .grid-3, .grid-2 { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .site-nav { display: none; }
+  .brand-text { display: none; }
+  .menu summary { padding: 7px 9px; font-size: 0.9rem; }
+  .sub-nav .wrap { gap: 18px; }
+  .products { margin-top: -24px; }
+  .product { padding: 24px; }
+  /* Tabela de 3 colunas nas políticas: rola dentro de si em vez de alargar a página. */
+  .legal table { display: block; overflow-x: auto; }
   section { padding: 64px 0; }
+}
+
+@media (max-width: 420px) {
+  .site-header .wrap { gap: 10px; padding: 0 12px; }
+  .menu summary img { display: none; }
+  .menu-panel { position: fixed; left: 12px; right: 12px; top: 66px; min-width: 0; }
 }

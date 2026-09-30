@@ -10,3 +10,12 @@
 /terms/pt-BR          /terms/pt-br          301
 /user-privacy/pt-BR   /user-privacy/pt-br   301
 /support/pt-BR        /support/pt-br        301
+
+# DietCoach: mesmos documentos, debaixo de /dietcoach.
+/dietcoach/privacy        /dietcoach/privacy/en        302
+/dietcoach/user-privacy   /dietcoach/user-privacy/en   302
+/dietcoach/support        /dietcoach/support/en        302
+/dietcoach/privacy/pt-BR        /dietcoach/privacy/pt-br        301
+/dietcoach/user-privacy/pt-BR   /dietcoach/user-privacy/pt-br   301
+/dietcoach/support/pt-BR        /dietcoach/support/pt-br        301
+

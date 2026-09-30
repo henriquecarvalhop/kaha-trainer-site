@@ -15,6 +15,7 @@ DirectoryIndex index.html
   # pt-BR com maiúscula -> pt-br. No Linux o sistema de arquivos diferencia
   # caixa, e quem copiou a URL com maiúscula precisa chegar na página.
   RewriteRule ^(privacy|terms|user-privacy|support)/pt-BR/?$ /$1/pt-br [R=301,L,NC]
+  RewriteRule ^dietcoach/(privacy|user-privacy|support)/pt-BR/?$ /dietcoach/$1/pt-br [R=301,L,NC]
 </IfModule>
 
 # Raiz de cada documento cai no inglês; o JS de cada index redireciona por idioma.
@@ -22,6 +23,7 @@ Redirect 302 /privacy      /privacy/en
 Redirect 302 /terms        /terms/en
 Redirect 302 /user-privacy /user-privacy/en
 Redirect 302 /support      /support/en
+RedirectMatch 302 ^/dietcoach/(privacy|user-privacy|support)/?$ /dietcoach/$1/en
 
 <IfModule mod_expires.c>
   ExpiresActive On
