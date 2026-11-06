@@ -24,10 +24,10 @@ dietcoach/user-privacy/{en,es,pt-br}/ DietCoach — Suas escolhas de privacidade
 dietcoach/support/{en,es,pt-br}/     DietCoach — Suporte
                                      (termos: o EULA padrão da Apple)
 
-bebe/privacy/{en,es,pt-br}/          Bebê Tracker — Política de Privacidade
-bebe/user-privacy/{en,es,pt-br}/     Bebê Tracker — Suas escolhas de privacidade
-bebe/support/{en,es,pt-br}/          Bebê Tracker — Suporte
-bebe/terms/{en,es,pt-br}/            Bebê Tracker — Termos de Uso (EULA da Apple +
+bebe/privacy/{en,es,pt-br}/          Nanu — Política de Privacidade
+bebe/user-privacy/{en,es,pt-br}/     Nanu — Suas escolhas de privacidade
+bebe/support/{en,es,pt-br}/          Nanu — Suporte
+bebe/terms/{en,es,pt-br}/            Nanu — Termos de Uso (EULA da Apple +
                                      aviso médico + assinaturas). Sem landing.
 
 _redirects                           redirecionamentos (Netlify)
@@ -77,7 +77,7 @@ existe apenas como redirecionamento em `_redirects` e `vercel.json`.
 | URL de suporte | `https://kahatrainer.com/dietcoach/support/en` (`/es`, `/pt-br`) |
 | URL de marketing | `https://kahatrainer.com/dietcoach/` |
 
-### Bebê Tracker
+### Nanu
 
 | campo | URL |
 |---|---|
@@ -88,7 +88,7 @@ existe apenas como redirecionamento em `_redirects` e `vercel.json`.
 | URL de suporte | `https://kahatrainer.com/bebe/support/en` (`/es`, `/pt-br`) |
 | Termos de uso (EULA) | `https://kahatrainer.com/bebe/terms/en` (`/es`, `/pt-br`) |
 
-O menu do Bebê Tracker no cabeçalho existe só nas páginas de `bebe/` (não há
+O menu do Nanu no cabeçalho existe só nas páginas de `bebe/` (não há
 landing ainda); as demais páginas ainda mostram só Kaha Trainer e DietCoach.
 
 Os apps abrem as mesmas páginas por `LegalLinks.swift`, que monta
