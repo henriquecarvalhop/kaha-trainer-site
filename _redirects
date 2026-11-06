@@ -29,3 +29,11 @@
 /bebe/user-privacy/pt-BR   /bebe/user-privacy/pt-br   301
 /bebe/support/pt-BR        /bebe/support/pt-br        301
 /bebe/terms/pt-BR          /bebe/terms/pt-br          301
+
+# Stoic: mesmos documentos, debaixo de /stoic (termos: o EULA padrão da Apple).
+/stoic/privacy        /stoic/privacy/en        302
+/stoic/user-privacy   /stoic/user-privacy/en   302
+/stoic/support        /stoic/support/en        302
+/stoic/privacy/pt-BR        /stoic/privacy/pt-br        301
+/stoic/user-privacy/pt-BR   /stoic/user-privacy/pt-br   301
+/stoic/support/pt-BR        /stoic/support/pt-br        301
