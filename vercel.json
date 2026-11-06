@@ -15,6 +15,14 @@
     { "source": "/dietcoach/support",      "destination": "/dietcoach/support/en" },
     { "source": "/dietcoach/privacy/pt-BR",      "destination": "/dietcoach/privacy/pt-br",      "permanent": true },
     { "source": "/dietcoach/user-privacy/pt-BR", "destination": "/dietcoach/user-privacy/pt-br", "permanent": true },
-    { "source": "/dietcoach/support/pt-BR",      "destination": "/dietcoach/support/pt-br",      "permanent": true }
+    { "source": "/dietcoach/support/pt-BR",      "destination": "/dietcoach/support/pt-br",      "permanent": true },
+    { "source": "/bebe/privacy",      "destination": "/bebe/privacy/en" },
+    { "source": "/bebe/user-privacy", "destination": "/bebe/user-privacy/en" },
+    { "source": "/bebe/support",      "destination": "/bebe/support/en" },
+    { "source": "/bebe/terms",        "destination": "/bebe/terms/en" },
+    { "source": "/bebe/privacy/pt-BR",      "destination": "/bebe/privacy/pt-br",      "permanent": true },
+    { "source": "/bebe/user-privacy/pt-BR", "destination": "/bebe/user-privacy/pt-br", "permanent": true },
+    { "source": "/bebe/support/pt-BR",      "destination": "/bebe/support/pt-br",      "permanent": true },
+    { "source": "/bebe/terms/pt-BR",        "destination": "/bebe/terms/pt-br",        "permanent": true }
   ]
 }

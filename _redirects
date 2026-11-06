@@ -19,3 +19,13 @@
 /dietcoach/user-privacy/pt-BR   /dietcoach/user-privacy/pt-br   301
 /dietcoach/support/pt-BR        /dietcoach/support/pt-br        301
 
+
+# Bebê Tracker: mesmos documentos + termos, debaixo de /bebe.
+/bebe/privacy        /bebe/privacy/en        302
+/bebe/user-privacy   /bebe/user-privacy/en   302
+/bebe/support        /bebe/support/en        302
+/bebe/terms          /bebe/terms/en          302
+/bebe/privacy/pt-BR        /bebe/privacy/pt-br        301
+/bebe/user-privacy/pt-BR   /bebe/user-privacy/pt-br   301
+/bebe/support/pt-BR        /bebe/support/pt-br        301
+/bebe/terms/pt-BR          /bebe/terms/pt-br          301

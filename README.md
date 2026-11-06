@@ -12,7 +12,7 @@ trainer/index.html                   landing do Kaha Trainer (em inglês)
 dietcoach/index.html                 landing do DietCoach (em inglês)
 assets/css/style.css                 folha única, usada por todas as páginas
 assets/js/site.js                    só fecha o menu de app aberto ao clicar fora
-assets/img/                          ícones e screenshots dos dois apps
+assets/img/                          ícones e screenshots dos apps (bebe-icon.png: Bebê)
 
 privacy/{en,es,pt-br}/               Kaha Trainer — Política de Privacidade
 terms/{en,es,pt-br}/                 Kaha Trainer — Termos de Serviço
@@ -23,6 +23,12 @@ dietcoach/privacy/{en,es,pt-br}/     DietCoach — Política de Privacidade
 dietcoach/user-privacy/{en,es,pt-br}/ DietCoach — Suas escolhas de privacidade
 dietcoach/support/{en,es,pt-br}/     DietCoach — Suporte
                                      (termos: o EULA padrão da Apple)
+
+bebe/privacy/{en,es,pt-br}/          Bebê Tracker — Política de Privacidade
+bebe/user-privacy/{en,es,pt-br}/     Bebê Tracker — Suas escolhas de privacidade
+bebe/support/{en,es,pt-br}/          Bebê Tracker — Suporte
+bebe/terms/{en,es,pt-br}/            Bebê Tracker — Termos de Uso (EULA da Apple +
+                                     aviso médico + assinaturas). Sem landing.
 
 _redirects                           redirecionamentos (Netlify)
 vercel.json                          os mesmos redirecionamentos (Vercel)
@@ -71,7 +77,21 @@ existe apenas como redirecionamento em `_redirects` e `vercel.json`.
 | URL de suporte | `https://kahatrainer.com/dietcoach/support/en` (`/es`, `/pt-br`) |
 | URL de marketing | `https://kahatrainer.com/dietcoach/` |
 
-Os dois apps abrem as mesmas páginas por `LegalLinks.swift`, que monta
+### Bebê Tracker
+
+| campo | URL |
+|---|---|
+| Política de privacidade (Inglês EUA) | `https://kahatrainer.com/bebe/privacy/en` |
+| Política de privacidade (Espanhol) | `https://kahatrainer.com/bebe/privacy/es` |
+| Política de privacidade (Português BR) | `https://kahatrainer.com/bebe/privacy/pt-br` |
+| Opções de privacidade do usuário | `https://kahatrainer.com/bebe/user-privacy/en` (`/es`, `/pt-br`) |
+| URL de suporte | `https://kahatrainer.com/bebe/support/en` (`/es`, `/pt-br`) |
+| Termos de uso (EULA) | `https://kahatrainer.com/bebe/terms/en` (`/es`, `/pt-br`) |
+
+O menu do Bebê Tracker no cabeçalho existe só nas páginas de `bebe/` (não há
+landing ainda); as demais páginas ainda mostram só Kaha Trainer e DietCoach.
+
+Os apps abrem as mesmas páginas por `LegalLinks.swift`, que monta
 `base/documento/idioma`.
 
 ## Pendências antes de publicar
