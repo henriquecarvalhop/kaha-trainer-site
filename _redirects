@@ -37,3 +37,13 @@
 /stoic/privacy/pt-BR        /stoic/privacy/pt-br        301
 /stoic/user-privacy/pt-BR   /stoic/user-privacy/pt-br   301
 /stoic/support/pt-BR        /stoic/support/pt-br        301
+
+# Pets: mesmos documentos, debaixo de /pets (termos: o EULA padrão da Apple).
+/pets/privacy        /pets/privacy/en        302
+/pets/user-privacy   /pets/user-privacy/en   302
+/pets/support        /pets/support/en        302
+/pets/privacy/pt-BR        /pets/privacy/pt-br        301
+/pets/user-privacy/pt-BR   /pets/user-privacy/pt-br   301
+/pets/support/pt-BR        /pets/support/pt-br        301
+# QR de pet perdido: /pets/p/CÓDIGO -> /pets/p/?c=CÓDIGO
+/pets/p/:code        /pets/p/?c=:code        302

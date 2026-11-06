@@ -13,10 +13,13 @@
   // O GitHub Pages não tem regra de redirecionamento no servidor. Esta página
   // recupera os dois casos previsíveis antes de admitir que a URL não existe:
   // caixa errada no idioma (/privacy/pt-BR) e documento sem idioma (/privacy),
-  // dos dois apps (/dietcoach/privacy/pt-BR).
+  // dos apps (/dietcoach/privacy/pt-BR, /pets/support).
   (function () {
+    // QR de pet perdido: /pets/p/CÓDIGO -> /pets/p/?c=CÓDIGO (a página lê o ?c=).
+    var qr = location.pathname.match(/^\/pets\/p\/([A-Za-z0-9-]{6,12})\/?$/);
+    if (qr) { location.replace("/pets/p/?c=" + qr[1]); return; }
     var p = location.pathname.replace(/\/+$/, "");
-    var m = p.match(/^(\/dietcoach)?\/(privacy|terms|user-privacy|support)(?:\/([A-Za-z-]+))?$/);
+    var m = p.match(/^(\/dietcoach|\/pets)?\/(privacy|terms|user-privacy|support)(?:\/([A-Za-z-]+))?$/);
     if (!m) return;
     var app = m[1] || "", doc = m[2], lang = (m[3] || "").toLowerCase();
     if (app && doc === "terms") return;
@@ -57,6 +60,17 @@
           <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (Apple EULA)</a>
         </div>
       </details>
+      <details class="menu">
+        <summary>Pets</summary>
+        <div class="menu-panel">
+          <a class="primary" href="/pets/">Overview</a>
+          <hr>
+          <a href="/pets/support/en">Support</a>
+          <a href="/pets/privacy/en">Privacy Policy</a>
+          <a href="/pets/user-privacy/en">Your Privacy Choices</a>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use (Apple EULA)</a>
+        </div>
+      </details>
     </nav>
   </div>
 </header>
@@ -68,6 +82,7 @@
       <li><a href="/">Home</a></li>
       <li><b>Kaha Trainer</b> — <a href="/trainer/">Overview</a> · <a href="/support/en">Support</a> · <a href="/privacy/en">Privacy Policy</a> · <a href="/terms/en">Terms of Service</a> · <a href="/user-privacy/en">Your Privacy Choices</a></li>
       <li><b>DietCoach</b> — <a href="/dietcoach/">Overview</a> · <a href="/dietcoach/support/en">Support</a> · <a href="/dietcoach/privacy/en">Privacy Policy</a> · <a href="/dietcoach/user-privacy/en">Your Privacy Choices</a></li>
+      <li><b>Pets</b> — <a href="/pets/">Overview</a> · <a href="/pets/support/en">Support</a> · <a href="/pets/privacy/en">Privacy Policy</a> · <a href="/pets/user-privacy/en">Your Privacy Choices</a></li>
     </ul>
   </div>
 </main>

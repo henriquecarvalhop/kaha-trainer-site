@@ -29,6 +29,13 @@
     { "source": "/stoic/support",      "destination": "/stoic/support/en" },
     { "source": "/stoic/privacy/pt-BR",      "destination": "/stoic/privacy/pt-br",      "permanent": true },
     { "source": "/stoic/user-privacy/pt-BR", "destination": "/stoic/user-privacy/pt-br", "permanent": true },
-    { "source": "/stoic/support/pt-BR",      "destination": "/stoic/support/pt-br",      "permanent": true }
+    { "source": "/stoic/support/pt-BR",      "destination": "/stoic/support/pt-br",      "permanent": true },
+    { "source": "/pets/privacy",      "destination": "/pets/privacy/en" },
+    { "source": "/pets/user-privacy", "destination": "/pets/user-privacy/en" },
+    { "source": "/pets/support",      "destination": "/pets/support/en" },
+    { "source": "/pets/privacy/pt-BR",      "destination": "/pets/privacy/pt-br",      "permanent": true },
+    { "source": "/pets/user-privacy/pt-BR", "destination": "/pets/user-privacy/pt-br", "permanent": true },
+    { "source": "/pets/support/pt-BR",      "destination": "/pets/support/pt-br",      "permanent": true },
+    { "source": "/pets/p/:code([A-Za-z0-9-]{6,12})", "destination": "/pets/p/?c=:code" }
   ]
 }

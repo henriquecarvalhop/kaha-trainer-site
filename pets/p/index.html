@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pets</title>
+<meta name="description" content="Found a pet? Contact its family.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" href="/assets/css/style.css">
+<style>
+  /* Página pública do QR de pet perdido (kahatrainer.com/pets/p/?c=CÓDIGO).
+     Quem abre é quem achou o pet, no celular: foto grande, nome e botões de
+     contato. Sem menu do site, sem análise de uso. Os dados vêm da RPC
+     get_lost_pet (Supabase do Pets), só o que o tutor liberou. */
+  body { background: var(--paper-warm); }
+  .lp { max-width: 520px; margin: 0 auto; padding: 18px 16px 40px; min-height: 100vh; display: flex; flex-direction: column; }
+  .lp-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 18px 50px rgba(12,20,18,0.08); }
+  .lp-photo { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: var(--paper-warm); }
+  .lp-emoji { width: 100%; aspect-ratio: 1 / 1; display: grid; place-items: center; font-size: 8rem; background: #E9F8EF; }
+  .lp-alert { background: var(--red); color: #fff; font-weight: 760; font-size: 1.15rem; line-height: 1.3; text-align: center; padding: 16px 18px; }
+  .lp-body { padding: 22px 20px 24px; }
+  .lp-body h1 { font-size: clamp(2rem, 9vw, 2.6rem); margin: 0 0 4px; }
+  .lp-meta { color: var(--ink-faint); margin: 0 0 18px; }
+  .lp-msg { background: var(--paper-warm); border-left: 3px solid var(--green); border-radius: 0 12px 12px 0; padding: 14px 16px; margin: 0 0 18px; white-space: pre-line; overflow-wrap: anywhere; }
+  .lp-owner { color: var(--ink-soft); margin: 0 0 16px; }
+  .lp-actions { display: grid; gap: 10px; }
+  .lp-actions .btn { width: 100%; padding: 15px 20px; font-size: 1.05rem; }
+  .btn-call { background: var(--ink); color: #fff; }
+  .btn-wa { background: #25D366; color: #06311a; }
+  .btn-mail { background: #fff; color: var(--ink); border-color: var(--line); }
+  .lp-none { color: var(--ink-faint); font-size: 0.95rem; margin: 0; }
+  .lp-state { text-align: center; padding: 48px 22px; }
+  .lp-state .big { font-size: 4rem; margin-bottom: 10px; }
+  .lp-state h1 { font-size: 1.6rem; }
+  .lp-state p { color: var(--ink-soft); }
+  .lp-foot { margin-top: auto; padding-top: 26px; text-align: center; font-size: 0.85rem; color: var(--ink-faint); }
+  .lp-foot a { color: var(--ink-faint); }
+  .lp-spin { width: 34px; height: 34px; margin: 0 auto 14px; border-radius: 50%; border: 3px solid var(--line); border-top-color: var(--green-dark); animation: lp-spin 0.8s linear infinite; }
+  @keyframes lp-spin { to { transform: rotate(360deg); } }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main class="lp">
+  <div class="lp-card" id="card">
+    <div class="lp-state" id="state">
+      <div class="lp-spin" aria-hidden="true"></div>
+      <p id="state-text">Loading…</p>
+    </div>
+    <div id="pet" hidden>
+      <img class="lp-photo" id="photo" alt="" hidden>
+      <div class="lp-emoji" id="emoji" aria-hidden="true" hidden></div>
+      <div class="lp-alert" id="alert" role="alert" hidden></div>
+      <div class="lp-body">
+        <h1 id="name"></h1>
+        <p class="lp-meta" id="meta"></p>
+        <p class="lp-msg" id="msg" hidden></p>
+        <p class="lp-owner" id="owner" hidden></p>
+        <div class="lp-actions" id="actions"></div>
+        <p class="lp-none" id="nocontact" hidden></p>
+      </div>
+    </div>
+  </div>
+  <footer class="lp-foot">
+    <p id="foot-text">This page was created by the pet's family with the Pets app.</p>
+    <p><a href="/pets/">Pets</a> · <a id="foot-privacy" href="/pets/privacy/en">Privacy Policy</a> · © 2026 CloudArbitration LTDA</p>
+  </footer>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var SUPABASE_URL = "https://icdbiotzptmoepnwylmu.supabase.co";
+  // Chave pública (anon) do app; quem protege os dados é o RLS e a própria RPC.
+  var ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImljZGJpb3R6cHRtb2Vwbnd5bG11Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM5MDY5OTAsImV4cCI6MjEwOTQ4Mjk5MH0.kmXWB9roV9X77UljPUNDZoxmh-KNr4mJ4LIQ7FmLVo4";
+
+  var T = {
+    en: {
+      loading: "Loading…",
+      lost: "I'm lost! Please help me get home",
+      call: "Call", whatsapp: "WhatsApp", email: "Email",
+      wa_text: "Hi! I found your pet {name}.",
+      mail_subject: "I found your pet {name}",
+      owner: "My family: {owner}",
+      no_contact: "The family didn't share a contact on this page. If the pet is lost, take it to a vet or shelter — they can read its microchip.",
+      nf_title: "Pet not found",
+      nf_text: "This code doesn't match any pet, or its family turned the page off. Check the code on the tag and try again.",
+      err_title: "Couldn't load",
+      err_text: "Check your internet connection and try again.",
+      retry: "Try again",
+      foot: "This page was created by the pet's family with the Pets app.",
+      privacy: "Privacy Policy", privacy_path: "en",
+      species: { dog: "Dog", cat: "Cat", bird: "Bird", rabbit: "Rabbit", rodent: "Rodent", reptile: "Reptile", fish: "Fish" },
+      sex: { male: "Male", female: "Female" }
+    },
+    pt: {
+      loading: "Carregando…",
+      lost: "Estou perdido! Me ajude a voltar para casa",
+      call: "Ligar", whatsapp: "WhatsApp", email: "E-mail",
+      wa_text: "Olá! Encontrei seu pet {name}.",
+      mail_subject: "Encontrei seu pet {name}",
+      owner: "Minha família: {owner}",
+      no_contact: "A família não deixou um contato nesta página. Se o pet estiver perdido, leve-o a um veterinário ou abrigo — eles conseguem ler o microchip.",
+      nf_title: "Pet não encontrado",
+      nf_text: "Este código não corresponde a nenhum pet, ou a família desligou a página. Confira o código na plaquinha e tente de novo.",
+      err_title: "Não foi possível carregar",
+      err_text: "Verifique sua conexão com a internet e tente de novo.",
+      retry: "Tentar de novo",
+      foot: "Esta página foi criada pela família do pet com o app Pets.",
+      privacy: "Política de Privacidade", privacy_path: "pt-br",
+      species: { dog: "Cachorro", cat: "Gato", bird: "Pássaro", rabbit: "Coelho", rodent: "Roedor", reptile: "Réptil", fish: "Peixe" },
+      sex: { male: "Macho", female: "Fêmea" }
+    },
+    es: {
+      loading: "Cargando…",
+      lost: "¡Estoy perdido! Ayúdame a volver a casa",
+      call: "Llamar", whatsapp: "WhatsApp", email: "Correo",
+      wa_text: "¡Hola! Encontré a tu mascota {name}.",
+      mail_subject: "Encontré a tu mascota {name}",
+      owner: "Mi familia: {owner}",
+      no_contact: "La familia no dejó un contacto en esta página. Si la mascota está perdida, llévala a un veterinario o refugio — pueden leer su microchip.",
+      nf_title: "Mascota no encontrada",
+      nf_text: "Este código no corresponde a ninguna mascota, o su familia desactivó la página. Revisa el código de la placa e inténtalo de nuevo.",
+      err_title: "No se pudo cargar",
+      err_text: "Revisa tu conexión a internet e inténtalo de nuevo.",
+      retry: "Reintentar",
+      foot: "Esta página la creó la familia de la mascota con la app Pets.",
+      privacy: "Política de Privacidad", privacy_path: "es",
+      species: { dog: "Perro", cat: "Gato", bird: "Ave", rabbit: "Conejo", rodent: "Roedor", reptile: "Reptil", fish: "Pez" },
+      sex: { male: "Macho", female: "Hembra" }
+    }
+  };
+  var EMOJI = { dog: "🐶", cat: "🐱", bird: "🐦", rabbit: "🐰", rodent: "🐹", reptile: "🦎", fish: "🐠" };
+
+  var nav = (navigator.language || "en").toLowerCase();
+  var lang = nav.indexOf("pt") === 0 ? "pt" : nav.indexOf("es") === 0 ? "es" : "en";
+  var t = T[lang];
+  document.documentElement.lang = lang === "pt" ? "pt-BR" : lang;
+
+  function $(id) { return document.getElementById(id); }
+  function fill(s, vars) {
+    return s.replace(/\{(\w+)\}/g, function (_, k) { return vars[k] == null ? "" : vars[k]; });
+  }
+  function str(v) { return typeof v === "string" ? v.trim() : ""; }
+
+  $("state-text").textContent = t.loading;
+  $("foot-text").textContent = t.foot;
+  $("foot-privacy").textContent = t.privacy;
+  $("foot-privacy").href = "/pets/privacy/" + t.privacy_path;
+
+  // Código: ?c=CÓDIGO, ou #CÓDIGO (o 404.html converte /pets/p/CÓDIGO em ?c=).
+  function readCode() {
+    var c = "";
+    try { c = new URLSearchParams(location.search).get("c") || ""; } catch (e) { c = ""; }
+    if (!c && location.hash) c = decodeURIComponent(location.hash.slice(1));
+    c = c.trim().replace(/^c=/i, "");
+    return /^[A-Za-z0-9-]{4,32}$/.test(c) ? c.toUpperCase() : "";
+  }
+
+  function showState(icon, title, text, retry) {
+    var box = $("state");
+    box.textContent = "";
+    var big = document.createElement("div"); big.className = "big"; big.textContent = icon;
+    var h = document.createElement("h1"); h.textContent = title;
+    var p = document.createElement("p"); p.textContent = text;
+    box.appendChild(big); box.appendChild(h); box.appendChild(p);
+    if (retry) {
+      var b = document.createElement("button");
+      b.className = "btn btn-primary"; b.type = "button"; b.textContent = t.retry;
+      b.addEventListener("click", function () { location.reload(); });
+      box.appendChild(b);
+    }
+    box.hidden = false;
+    $("pet").hidden = true;
+  }
+
+  function addButton(cls, href, label, external) {
+    var a = document.createElement("a");
+    a.className = "btn " + cls; a.href = href; a.textContent = label;
+    if (external) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+    $("actions").appendChild(a);
+  }
+
+  function render(pet) {
+    var name = str(pet.name) || "?";
+    document.title = name + " — Pets";
+
+    var species = str(pet.species);
+    var photo = str(pet.photo_path);
+    var emoji = $("emoji");
+    emoji.textContent = EMOJI[species] || "🐾";
+    if (photo) {
+      var img = $("photo");
+      img.alt = name;
+      img.onerror = function () { img.hidden = true; emoji.hidden = false; };
+      img.src = SUPABASE_URL + "/storage/v1/object/public/pet-public/" +
+        photo.split("/").map(encodeURIComponent).join("/");
+      img.hidden = false;
+    } else {
+      emoji.hidden = false;
+    }
+
+    if (pet.is_lost === true) {
+      $("alert").textContent = t.lost;
+      $("alert").hidden = false;
+    }
+
+    $("name").textContent = name;
+    var meta = [];
+    if (t.species[species]) meta.push(t.species[species]);
+    if (str(pet.breed)) meta.push(str(pet.breed));
+    if (t.sex[str(pet.sex)]) meta.push(t.sex[str(pet.sex)]);
+    $("meta").textContent = meta.join(" · ");
+    $("meta").hidden = meta.length === 0;
+
+    if (str(pet.message)) { $("msg").textContent = str(pet.message); $("msg").hidden = false; }
+    if (str(pet.owner_name)) {
+      $("owner").textContent = fill(t.owner, { owner: str(pet.owner_name) });
+      $("owner").hidden = false;
+    }
+
+    var phone = str(pet.phone), wa = str(pet.whatsapp), email = str(pet.email);
+    var any = false;
+    if (phone) {
+      var tel = phone.replace(/[^\d+]/g, "");
+      if (tel) { addButton("btn-call", "tel:" + tel, "📞 " + t.call + " · " + phone, false); any = true; }
+    }
+    if (wa) {
+      var digits = wa.replace(/\D/g, "");
+      if (digits) {
+        addButton("btn-wa", "https://wa.me/" + digits + "?text=" +
+          encodeURIComponent(fill(t.wa_text, { name: name })), "💬 " + t.whatsapp, true);
+        any = true;
+      }
+    }
+    if (email && email.indexOf("@") > 0) {
+      addButton("btn-mail", "mailto:" + encodeURIComponent(email).replace(/%40/g, "@") +
+        "?subject=" + encodeURIComponent(fill(t.mail_subject, { name: name })),
+        "✉️ " + t.email + " · " + email, false);
+      any = true;
+    }
+    if (!any) { $("nocontact").textContent = t.no_contact; $("nocontact").hidden = false; }
+
+    $("state").hidden = true;
+    $("pet").hidden = false;
+  }
+
+  var code = readCode();
+  if (!code) { showState("🔎", t.nf_title, t.nf_text, false); return; }
+
+  var ctrl = typeof AbortController === "function" ? new AbortController() : null;
+  var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : null;
+
+  fetch(SUPABASE_URL + "/rest/v1/rpc/get_lost_pet", {
+    method: "POST",
+    headers: {
+      "apikey": ANON_KEY,
+      "Authorization": "Bearer " + ANON_KEY,
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify({ p_code: code }),
+    signal: ctrl ? ctrl.signal : undefined,
+    cache: "no-store",
+    credentials: "omit",
+    referrerPolicy: "no-referrer"
+  }).then(function (res) {
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    return res.json();
+  }).then(function (data) {
+    if (timer) clearTimeout(timer);
+    if (Array.isArray(data)) data = data[0];
+    if (!data || typeof data !== "object") { showState("🔎", t.nf_title, t.nf_text, false); return; }
+    render(data);
+  }).catch(function () {
+    if (timer) clearTimeout(timer);
+    showState("📡", t.err_title, t.err_text, true);
+  });
+})();
+</script>
+</body>
+</html>
