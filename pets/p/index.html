@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Pets</title>
+<title>Petlu</title>
 <meta name="description" content="Found a pet? Contact its family.">
 <meta name="robots" content="noindex, nofollow">
 <meta name="referrer" content="no-referrer">
@@ -13,7 +13,7 @@
   /* Página pública do QR de pet perdido (kahatrainer.com/pets/p/?c=CÓDIGO).
      Quem abre é quem achou o pet, no celular: foto grande, nome e botões de
      contato. Sem menu do site, sem análise de uso. Os dados vêm da RPC
-     get_lost_pet (Supabase do Pets), só o que o tutor liberou. */
+     get_lost_pet (Supabase do Petlu), só o que o tutor liberou. */
   body { background: var(--paper-warm); }
   .lp { max-width: 520px; margin: 0 auto; padding: 18px 16px 40px; min-height: 100vh; display: flex; flex-direction: column; }
   .lp-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 18px 50px rgba(12,20,18,0.08); }
@@ -64,8 +64,8 @@
     </div>
   </div>
   <footer class="lp-foot">
-    <p id="foot-text">This page was created by the pet's family with the Pets app.</p>
-    <p><a href="/pets/">Pets</a> · <a id="foot-privacy" href="/pets/privacy/en">Privacy Policy</a> · © 2026 CloudArbitration LTDA</p>
+    <p id="foot-text">This page was created by the pet's family with the Petlu app.</p>
+    <p><a href="/pets/">Petlu</a> · <a id="foot-privacy" href="/pets/privacy/en">Privacy Policy</a> · © 2026 CloudArbitration LTDA</p>
   </footer>
 </main>
 
@@ -91,7 +91,7 @@
       err_title: "Couldn't load",
       err_text: "Check your internet connection and try again.",
       retry: "Try again",
-      foot: "This page was created by the pet's family with the Pets app.",
+      foot: "This page was created by the pet's family with the Petlu app.",
       privacy: "Privacy Policy", privacy_path: "en",
       species: { dog: "Dog", cat: "Cat", bird: "Bird", rabbit: "Rabbit", rodent: "Rodent", reptile: "Reptile", fish: "Fish" },
       sex: { male: "Male", female: "Female" }
@@ -109,7 +109,7 @@
       err_title: "Não foi possível carregar",
       err_text: "Verifique sua conexão com a internet e tente de novo.",
       retry: "Tentar de novo",
-      foot: "Esta página foi criada pela família do pet com o app Pets.",
+      foot: "Esta página foi criada pela família do pet com o app Petlu.",
       privacy: "Política de Privacidade", privacy_path: "pt-br",
       species: { dog: "Cachorro", cat: "Gato", bird: "Pássaro", rabbit: "Coelho", rodent: "Roedor", reptile: "Réptil", fish: "Peixe" },
       sex: { male: "Macho", female: "Fêmea" }
@@ -127,7 +127,7 @@
       err_title: "No se pudo cargar",
       err_text: "Revisa tu conexión a internet e inténtalo de nuevo.",
       retry: "Reintentar",
-      foot: "Esta página la creó la familia de la mascota con la app Pets.",
+      foot: "Esta página la creó la familia de la mascota con la app Petlu.",
       privacy: "Política de Privacidad", privacy_path: "es",
       species: { dog: "Perro", cat: "Gato", bird: "Ave", rabbit: "Conejo", rodent: "Roedor", reptile: "Reptil", fish: "Pez" },
       sex: { male: "Macho", female: "Hembra" }
@@ -186,7 +186,7 @@
 
   function render(pet) {
     var name = str(pet.name) || "?";
-    document.title = name + " — Pets";
+    document.title = name + " — Petlu";
 
     var species = str(pet.species);
     var photo = str(pet.photo_path);
