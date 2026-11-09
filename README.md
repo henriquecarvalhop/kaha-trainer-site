@@ -30,6 +30,13 @@ bebe/support/{en,es,pt-br}/          Nanu — Suporte
 bebe/terms/{en,es,pt-br}/            Nanu — Termos de Uso (EULA da Apple +
                                      aviso médico + assinaturas). Sem landing.
 
+gravidez/index.html                  Nanita — landing (em inglês, com um parágrafo em pt/es)
+gravidez/privacy/{en,es,pt-br}/      Nanita — Política de Privacidade
+gravidez/user-privacy/{en,es,pt-br}/ Nanita — Suas escolhas de privacidade
+gravidez/support/{en,es,pt-br}/      Nanita — Suporte
+gravidez/terms/{en,es,pt-br}/        Nanita — Termos de Uso (EULA da Apple +
+                                     aviso médico + plano Sem anúncios)
+
 _redirects                           redirecionamentos (Netlify)
 vercel.json                          os mesmos redirecionamentos (Vercel)
 ```
@@ -90,6 +97,20 @@ existe apenas como redirecionamento em `_redirects` e `vercel.json`.
 
 O menu do Nanu no cabeçalho existe só nas páginas de `bebe/` (não há
 landing ainda); as demais páginas ainda mostram só Kaha Trainer e DietCoach.
+
+### Nanita (app de gravidez; a pasta continua `gravidez`)
+
+| campo | URL |
+|---|---|
+| Política de privacidade (Inglês EUA) | `https://kahatrainer.com/gravidez/privacy/en` |
+| Política de privacidade (Espanhol) | `https://kahatrainer.com/gravidez/privacy/es` |
+| Política de privacidade (Português BR) | `https://kahatrainer.com/gravidez/privacy/pt-br` |
+| Opções de privacidade do usuário | `https://kahatrainer.com/gravidez/user-privacy/en` (`/es`, `/pt-br`) |
+| URL de suporte | `https://kahatrainer.com/gravidez/support/en` (`/es`, `/pt-br`) |
+| Termos de uso (EULA) | `https://kahatrainer.com/gravidez/terms/en` (`/es`, `/pt-br`) |
+| URL de marketing | `https://kahatrainer.com/gravidez/` |
+
+O menu do Nanita no cabeçalho existe só nas páginas de `gravidez/`.
 
 Os apps abrem as mesmas páginas por `LegalLinks.swift`, que monta
 `base/documento/idioma`.

@@ -30,6 +30,16 @@
 /bebe/support/pt-BR        /bebe/support/pt-br        301
 /bebe/terms/pt-BR          /bebe/terms/pt-br          301
 
+# Nanita (gravidez): mesmos documentos + termos, debaixo de /gravidez.
+/gravidez/privacy        /gravidez/privacy/en        302
+/gravidez/user-privacy   /gravidez/user-privacy/en   302
+/gravidez/support        /gravidez/support/en        302
+/gravidez/terms          /gravidez/terms/en          302
+/gravidez/privacy/pt-BR        /gravidez/privacy/pt-br        301
+/gravidez/user-privacy/pt-BR   /gravidez/user-privacy/pt-br   301
+/gravidez/support/pt-BR        /gravidez/support/pt-br        301
+/gravidez/terms/pt-BR          /gravidez/terms/pt-br          301
+
 # Stoic: mesmos documentos, debaixo de /stoic (termos: o EULA padrão da Apple).
 /stoic/privacy        /stoic/privacy/en        302
 /stoic/user-privacy   /stoic/user-privacy/en   302
