@@ -19,7 +19,7 @@
     var qr = location.pathname.match(/^\/pets\/p\/([A-Za-z0-9-]{6,12})\/?$/);
     if (qr) { location.replace("/pets/p/?c=" + qr[1]); return; }
     var p = location.pathname.replace(/\/+$/, "");
-    var m = p.match(/^(\/dietcoach|\/pets)?\/(privacy|terms|user-privacy|support)(?:\/([A-Za-z-]+))?$/);
+    var m = p.match(/^(\/dietcoach|\/pets|\/sexlife)?\/(privacy|terms|user-privacy|support)(?:\/([A-Za-z-]+))?$/);
     if (!m) return;
     var app = m[1] || "", doc = m[2], lang = (m[3] || "").toLowerCase();
     if (app && doc === "terms") return;

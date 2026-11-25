@@ -44,6 +44,12 @@
     { "source": "/pets/privacy/pt-BR",      "destination": "/pets/privacy/pt-br",      "permanent": true },
     { "source": "/pets/user-privacy/pt-BR", "destination": "/pets/user-privacy/pt-br", "permanent": true },
     { "source": "/pets/support/pt-BR",      "destination": "/pets/support/pt-br",      "permanent": true },
+    { "source": "/sexlife/privacy", "destination": "/sexlife/privacy/en" },
+    { "source": "/sexlife/user-privacy", "destination": "/sexlife/user-privacy/en" },
+    { "source": "/sexlife/support", "destination": "/sexlife/support/en" },
+    { "source": "/sexlife/privacy/pt-BR", "destination": "/sexlife/privacy/pt-br", "permanent": true },
+    { "source": "/sexlife/user-privacy/pt-BR", "destination": "/sexlife/user-privacy/pt-br", "permanent": true },
+    { "source": "/sexlife/support/pt-BR", "destination": "/sexlife/support/pt-br", "permanent": true },
     { "source": "/pets/p/:code([A-Za-z0-9-]{6,12})", "destination": "/pets/p/?c=:code" }
   ]
 }
