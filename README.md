@@ -37,10 +37,10 @@ gravidez/support/{en,es,pt-br}/      Nanita — Suporte
 gravidez/terms/{en,es,pt-br}/        Nanita — Termos de Uso (EULA da Apple +
                                      aviso médico + plano Sem anúncios)
 
-sexlife/index.html                   Chama — página simples (inglês + pt/es)
-sexlife/privacy/{en,es,pt-br}/       Chama — Política de Privacidade
-sexlife/user-privacy/{en,es,pt-br}/  Chama — Suas escolhas de privacidade
-sexlife/support/{en,es,pt-br}/       Chama — Suporte (termos: EULA da Apple)
+sexlife/index.html                   Lumbre — página simples (inglês + pt/es)
+sexlife/privacy/{en,es,pt-br}/       Lumbre — Política de Privacidade
+sexlife/user-privacy/{en,es,pt-br}/  Lumbre — Suas escolhas de privacidade
+sexlife/support/{en,es,pt-br}/       Lumbre — Suporte (termos: EULA da Apple)
                                      App 18+: cabeçalho próprio, sem menu dos
                                      outros apps, sem link na home e `noindex`.
 

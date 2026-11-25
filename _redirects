@@ -58,7 +58,7 @@
 # QR de pet perdido: /pets/p/CÓDIGO -> /pets/p/?c=CÓDIGO
 /pets/p/:code        /pets/p/?c=:code        302
 
-# Chama: mesmos documentos, debaixo de /sexlife (termos: o EULA padrão da Apple).
+# Lumbre: mesmos documentos, debaixo de /sexlife (termos: o EULA padrão da Apple).
 /sexlife/privacy        /sexlife/privacy/en        302
 /sexlife/user-privacy   /sexlife/user-privacy/en   302
 /sexlife/support        /sexlife/support/en        302
