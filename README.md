@@ -44,6 +44,12 @@ sexlife/support/{en,es,pt-br}/       Lumbre — Suporte (termos: EULA da Apple)
                                      App 18+: cabeçalho próprio, sem menu dos
                                      outros apps, sem link na home e `noindex`.
 
+tiku/index.html                      Tiku — página simples (inglês + pt/es)
+tiku/privacy/{en,es,pt-br}/          Tiku — Política de Privacidade
+tiku/terms/{en,es,pt-br}/            Tiku — Termos de Uso (EULA da Apple + regras
+                                     de conteúdo das competições + prêmios)
+tiku/support/{en,es,pt-br}/          Tiku — Suporte. Sem anúncios: sem user-privacy.
+
 _redirects                           redirecionamentos (Netlify)
 vercel.json                          os mesmos redirecionamentos (Vercel)
 ```
@@ -118,6 +124,20 @@ landing ainda); as demais páginas ainda mostram só Kaha Trainer e DietCoach.
 | URL de marketing | `https://kahatrainer.com/gravidez/` |
 
 O menu do Nanita no cabeçalho existe só nas páginas de `gravidez/`.
+
+### Tiku (app de hábitos)
+
+| campo | URL |
+|---|---|
+| Política de privacidade (Inglês EUA) | `https://kahatrainer.com/tiku/privacy/en` |
+| Política de privacidade (Espanhol) | `https://kahatrainer.com/tiku/privacy/es` |
+| Política de privacidade (Português BR) | `https://kahatrainer.com/tiku/privacy/pt-br` |
+| URL de suporte | `https://kahatrainer.com/tiku/support/en` (`/es`, `/pt-br`) |
+| Termos de uso (EULA) | `https://kahatrainer.com/tiku/terms/en` (`/es`, `/pt-br`) |
+| URL de marketing | `https://kahatrainer.com/tiku/` |
+
+As páginas do Tiku saem de um gerador (texto dos 3 idiomas num arquivo só); ao
+mudar o app, conferir que os caminhos citados (Perfil › …) continuam certos.
 
 Os apps abrem as mesmas páginas por `LegalLinks.swift`, que monta
 `base/documento/idioma`.

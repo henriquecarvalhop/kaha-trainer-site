@@ -50,6 +50,12 @@
     { "source": "/sexlife/privacy/pt-BR", "destination": "/sexlife/privacy/pt-br", "permanent": true },
     { "source": "/sexlife/user-privacy/pt-BR", "destination": "/sexlife/user-privacy/pt-br", "permanent": true },
     { "source": "/sexlife/support/pt-BR", "destination": "/sexlife/support/pt-br", "permanent": true },
+    { "source": "/tiku/privacy", "destination": "/tiku/privacy/en" },
+    { "source": "/tiku/terms", "destination": "/tiku/terms/en" },
+    { "source": "/tiku/support", "destination": "/tiku/support/en" },
+    { "source": "/tiku/privacy/pt-BR", "destination": "/tiku/privacy/pt-br", "permanent": true },
+    { "source": "/tiku/terms/pt-BR", "destination": "/tiku/terms/pt-br", "permanent": true },
+    { "source": "/tiku/support/pt-BR", "destination": "/tiku/support/pt-br", "permanent": true },
     { "source": "/pets/p/:code([A-Za-z0-9-]{6,12})", "destination": "/pets/p/?c=:code" }
   ]
 }

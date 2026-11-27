@@ -65,3 +65,11 @@
 /sexlife/privacy/pt-BR        /sexlife/privacy/pt-br        301
 /sexlife/user-privacy/pt-BR   /sexlife/user-privacy/pt-br   301
 /sexlife/support/pt-BR        /sexlife/support/pt-br        301
+
+# Tiku (hábitos): privacidade, termos próprios (EULA da Apple + regras de conteúdo) e suporte.
+/tiku/privacy        /tiku/privacy/en        302
+/tiku/terms          /tiku/terms/en          302
+/tiku/support        /tiku/support/en        302
+/tiku/privacy/pt-BR  /tiku/privacy/pt-br     301
+/tiku/terms/pt-BR    /tiku/terms/pt-br       301
+/tiku/support/pt-BR  /tiku/support/pt-br     301
